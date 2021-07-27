@@ -1,0 +1,30 @@
+base:
+  project: winequality-project
+  random_state: 42
+  target_col: quality
+
+data_source:
+  s3_source: data_given/winequality.csv # For now we are processing the data from local environment, in future we can even pull from cloud storage.
+   
+load_data:
+  raw_dataset_csv: data/raw/winequality.csv # The data collected from s3 bucket is stored in the raw dataset file folder for future references.
+
+split_data:
+  train_path: data/processed/train_winequality.csv # The loaded data is splitted in to train and test datasets.
+  test_path: data/processed/test_winequality.csv
+  test_size: 0.2
+
+estimators: # The estimators for the regression problem
+  ElasticNet:
+    params:
+      alpha: 0.88
+      l1_ratio: 0.89
+      # alpha: 0.92
+      # l1_ratio: 0.43
+model_dir: saved_models
+
+reports:
+  params: report/params.json # The path where the parameters file is stored
+  scores: report/scores.json # The path where the model scores file is stored
+
+webapp_model_dir: prediction_service/model/model.joblib
