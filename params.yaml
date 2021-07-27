@@ -27,4 +27,4 @@ reports:
   params: report/params.json # The path where the parameters file is stored
   scores: report/scores.json # The path where the model scores file is stored
 
-webapp_model_dir: prediction_service/model/model.joblib
+webapp_model_dir: prediction_service/model/model.joblib # The path where the model is created in the saved_models folder, we are using this just for representational purpose. we copied and pasted in the current folder.
