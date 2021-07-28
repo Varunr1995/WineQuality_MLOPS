@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import os
 import yaml
 import joblib
-import numpy as numpy
+import numpy as np
 
 params_path = 'params.yaml'
 webapp_root = "webapp"
@@ -26,8 +26,15 @@ def predict(data):
     return prediction[0] # The reason to use 0 in list is to stop the output to be printed in list format.
 
 def api_response(request):
-    pass
-
+    try:
+        data = np.array([list(request.json.values)])
+        response = predict(data)
+        response ={'response':response}
+        return response
+    except Exception as e:
+        print(e)
+        error = {"error":"Something went wrong!! Try again"}
+        return error
 
 
 @app.route("/", methods=["GET", "POST"])
