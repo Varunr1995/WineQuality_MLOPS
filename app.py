@@ -30,7 +30,8 @@ def index():
 
         except Exception as e:
             print(e)
-            error = {"error":"Something went wrong, Try again"}
+            error = {"error":"Something went wrong, Try again"} # This will display a message that there is an error.
+            # error = {"error": e} # This will specifically print the error message on what went wrong.
             return render_template("404.html", error=error)
 
     else:
